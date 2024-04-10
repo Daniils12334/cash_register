@@ -29,3 +29,59 @@
 # Vārdnīcas - https://www.w3schools.com/python/python_dictionaries.asp
 # Klonēt repozitoriju - hhttps://code.visualstudio.com/docs/sourcecontrol/intro-to-git
 #
+import json
+import os, shutil
+
+pirkumi=[]
+with open('pirkumi.json', 'r') as openfile:
+    # Reading from json file
+    pirkumi = json.load(openfile)
+while True:
+    print("1 - pievienot produktu ")
+    print("2 - dzēst preci pēc numura ")
+    print("3 - izdzēst sarakstu ")
+    print("4 - piemērot atlaidi, ievadīt summu procentos ")
+    print("5 - samaksāt, ja iedota lielāka summa ")
+    print("6 - izdrukāt čeku uz ekrāna ")
+
+    choice = input("Enter your choice: ")
+
+#add item
+    if choice == "1":
+                pirkums = {
+                "name" : input(str("Enter item name: ")),
+                "cost" : input(str("Enter item cost: ")),
+                "atlaide" : "False"
+                }
+            
+                pirkumi.append(pirkums)
+                with open("pirkumi.json", "w") as outfile:
+                    json.dump(pirkumi, outfile)            
+    #elif len("name") > 2:
+    #        print("Error")
+    #        pass
+#delete item
+    if choice == "2":
+        filepath = 'list.json'
+        with open(filepath, 'r') as fp:
+            pirkums = json.load(fp)
+        del pirkums['pirkumi'][1]
+
+        with open(filepath, 'w') as fp:
+            json.dump(pirkums, fp)
+#dlete list file
+    elif choice == "3":
+            os.remove("pirkumi.json")
+            open("pirkumi.json","x")
+#pievienot atlaidi
+    elif choice == "4":
+        
+        pass
+#samaksāt, ja atdota lielāka summa
+    elif choice == "5":
+        pass
+#izdrukāt čeku
+    elif choice == "6":
+            print(pirkums)
+
+    
